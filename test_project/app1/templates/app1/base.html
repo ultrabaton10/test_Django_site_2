@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'app1/css/style.css' %}">  <!-- static/app1/css/style.css -->
+    <title>{% block title %}{% endblock %}</title>
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div><a href="{% url 'products' %}">Products</a></div>
+            <div><a href="{% url 'categories' %}">Categories</a></div>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

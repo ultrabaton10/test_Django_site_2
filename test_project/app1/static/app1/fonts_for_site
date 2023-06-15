@@ -1,0 +1,74 @@
+// --> fonts
+@font-face {
+    font-family: 'Ubuntu-regular-bold';
+    src: url('../fonts/ubuntu-fonts/Ubuntu-regular-bold/Ubuntu-Bold.woff2') format('woff2'),
+        url('../fonts/ubuntu-fonts/Ubuntu-regular-bold/Ubuntu-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ubuntu-italic-bold';
+    src: url('../fonts/ubuntu-fonts/Ubuntu-italic-bold/Ubuntu-BoldItalic.woff2') format('woff2'),
+        url('../fonts/ubuntu-fonts/Ubuntu-italic-bold/Ubuntu-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ubuntu-italic-medium';
+    src: url('../fonts/ubuntu-fonts/Ubuntu-italic-medium/Ubuntu-MediumItalic.woff2') format('woff2'),
+        url('../fonts/ubuntu-fonts/Ubuntu-italic-medium/Ubuntu-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ubuntu-regular-light';
+    src: url('../fonts/ubuntu-fonts/Ubuntu-regular-light/Ubuntu-Light.woff2') format('woff2'),
+        url('../fonts/ubuntu-fonts/Ubuntu-regular-light/Ubuntu-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ubuntu-italic-normal';
+    src: url('../fonts/ubuntu-fonts/Ubuntu-italic-normal/Ubuntu-Italic.woff2') format('woff2'),
+        url('../fonts/ubuntu-fonts/Ubuntu-italic-normal/Ubuntu-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ubuntu-regular-normal';
+    src: url('../fonts/ubuntu-fonts/Ubuntu-regular-normal/Ubuntu-Regular.woff2') format('woff2'),
+        url('../fonts/ubuntu-fonts/Ubuntu-regular-normal/Ubuntu-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ubuntu-italic-light';
+    src: url('../fonts/ubuntu-fonts/Ubuntu-italic-light/Ubuntu-LightItalic.woff2') format('woff2'),
+        url('../fonts/ubuntu-fonts/Ubuntu-italic-light/Ubuntu-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+// -- Все доступные шрифты:
+// -- Ubuntu-regular-light  *1
+// -- Ubuntu-regular-normal *2
+// -- Ubuntu-regular-medium *3
+// -- Ubuntu-regular-bold   *4
+// -- Ubuntu-italic-light   *5
+// -- Ubuntu-italic-normal  *6
+// -- Ubuntu-italic-medium  *7
+// -- Ubuntu-italic-bold    *8

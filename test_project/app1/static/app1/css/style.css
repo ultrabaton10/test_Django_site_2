@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+
+@font-face {
+    font-family: 'Ubuntu-regular-medium';
+    src: url('../fonts/ubuntu-fonts/Ubuntu-regular-medium/Ubuntu-Medium.woff2') format('woff2'),
+        url('../fonts/ubuntu-fonts/Ubuntu-regular-medium/Ubuntu-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+body {
+    margin: 0;
+    font-family: 'Ubuntu-regular-medium', sans-serif;
+}
+
+header {
+    height: 20vh;
+}
+
+.product img {
+    max-height: 75px;
+}
+
+
