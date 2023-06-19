@@ -7,23 +7,32 @@
 {% block content %}
   {% for product in products %}
   <div class="product">
-    <!-- <img src="static/app1/images/my_face.png"> -->
-    <img src="
-    {% if product.image != '' and not t %}
+    <object class="photo-card-of-product">
+    <img src="{% if product.image != '' and not t %}
     ../media/{{ product.image }}
     {% endif %}
+
+    {% if product.image == '' and not t %}
+    ../media/my_face.png
+    {% endif %}
+
     {% if t %}
       ../../../../media/{{ product.image }}
     {% endif %}
-    {% if product.image == '' %}
-    ../media/my_face.png
-    {% endif %}
-">
-    <!-- media/app1/img_musik_zxszMN0.png media/app1/{{ product.image }}-->
-    <strong>{{ product.name }}<br>id книги: {{ product.id }}</strong>
-    <p>Автор: {{ product.author }}</p>
-    <p>Категория: {{ product.category }}</p>
-    <p>Цена: {{ product.price }}</p>
+
+    {% if product.image == '' and t %}
+      ../../../../media/my_face.png
+    {% endif %}">
+
+
+    </object>
+    <object class="card-of-product">
+    <article class="text-align-center">{{    product.name    }}</article><br>
+    <article>id книги: {{    product.id    }}</article>
+    <article>Автор:   {{    product.author    }}</article>
+    <article class="text-align-center">Категория: <a href="{% url 'products_by_category' product.category_id %}">{{ product.category }}</a></article>
+    <article>Цена: {{    product.price    }}</article>
+    </object>
   </div>
   {% endfor %}
 {% endblock %}
