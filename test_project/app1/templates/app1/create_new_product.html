@@ -1,8 +1,11 @@
 {% extends 'app1/base.html' %}
 
-{% block title %}Categories{% endblock %}
+
+{% block title %}Create product{% endblock %}
+
 
 {% block content %}
+
 <div>
   {% for cat in cats %}
     <div>
@@ -12,4 +15,12 @@
     </div>
   {% endfor %}
 </div>
+
+<strong>Create product</strong>
+<form method="post" action="{% url 'create' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Create">
+</form>
+
 {% endblock %}

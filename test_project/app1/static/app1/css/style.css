@@ -17,12 +17,80 @@ body {
     font-family: 'Ubuntu-regular-medium', sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: #389E28;
+    transition: 800ms linear;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #52E93A;
+    transition: 800ms linear;
+}
+
 header {
+    display: flex;
+    justify-content: space-around;
+    align-self: center;
+    background-image: linear-gradient(to bottom, #aaaaaa, #9a9a9a, #8a8a8a, #7b7b7b, #6c6c6c);
     height: 20vh;
 }
 
-.product img {
-    max-height: 75px;
+.product {
+    margin: 40px;
+    background-color: #F2F2F2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 25%;
+    height: 25em;
+    box-shadow: inset 0.1em 0.1em .3em #E7E7E7, inset -0.11em -0.11em .3em #B9B9B9;
+    border-radius: 50px;
+    transition: 1s linear;
 }
 
+.photo-card-of-product {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
+.product img {
+    height: 75px;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.card-of-product {
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+article {
+    margin: 5px;
+}
+
+article:first-child {
+    padding-top: 15px;
+    margin: 0px 20px 2px 20px;
+    border-top: 2px solid black;
+}
+article:last-child {
+    padding-bottom: 15px;
+    border-bottom: 2px solid black;
+}
