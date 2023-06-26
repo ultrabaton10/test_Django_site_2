@@ -1,23 +1,29 @@
 {% load static %}
 
+{% load app1_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'app1/css/style.css' %}">  <!-- static/app1/css/style.css -->
+    <link rel="icon" href="{% static 'app1/favicons/favicon_package_smail/favicon-16x16.png' %}">
+    <link rel="stylesheet" href="{% static 'app1/css/style.css' %}">
     <title>{% block title %}{% endblock %}</title>
 
 </head>
 <body>
     <header>
         <nav>
-            <div><a href="{% url 'products' %}">Products</a></div>
-            <div><a href="{% url 'categories' %}">Categories</a></div>
-            <div><a href="{% url 'create' %}">Create</a></div>
+            {% block header_main_menu  %}
+            {% endblock %}
         </nav>
     </header>
     <main>
         {% block content %}{% endblock %}
     </main>
+    <footer>
+        Footer
+    </footer>
 </body>
+
 </html>

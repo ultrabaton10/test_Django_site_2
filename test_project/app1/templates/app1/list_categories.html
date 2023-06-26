@@ -1,0 +1,17 @@
+{% for cat in cats %}
+    <div>
+      <a href="{% url 'products_by_category' cat.id %}">
+        <img class="style-for-categories-icons" src="
+
+        {% if cat.image != '' %}
+            {{ media_url }}{{ cat.image }}
+        {% endif %}
+
+        {% if cat.image == '' %}
+            {{ media_url }}/my_face.png
+        {% endif %}
+">
+        {{ cat.name }}
+      </a>
+    </div>
+{% endfor %}

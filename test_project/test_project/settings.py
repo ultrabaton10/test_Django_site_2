@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os, sys
 from pathlib import Path
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # PROJECT_ROOT = os
@@ -22,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-236iyrn93m#ifqhijfvginjh7&rp=h9q&#4*&9i5hq16apm753'
+SECRET_KEY = 'django-insvggecure-236iyrn93m#ifqhijfvginjh7&rp=h9q&#4*&9i5hq16apm753'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -133,3 +132,7 @@ CSRF_FAILURE_VIEW = 'app1.views.csrf_failure'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# DATE_INPUT_FORMATS = ['%d.%m.%Y']
+# DATETIME_INPUT_FORMATS = [ '%d. %m. %У %Н: %М: %S']

@@ -1,5 +1,28 @@
 {% extends 'app1/base.html' %}
-{% block title %}Main{% endblock %}
+
+{% load app1_tags %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block header_main_menu  %}
+  {% show_menu_bar header_menu=header_menu title=title %}
+{% endblock %}
+
 {% block content %}
+
 <h1>Welcome to the main page!!!</h1>
+<p>I'm suggest you visit sections Products, Categories
+    <br>
+    where you might find distinguishable products sorted
+    <br>
+    to you taste.
+    <br>
+    Also you can create yourself products and upload it
+    <br>
+    there.
+    <br>
+    This site is in a development mode. So don't expect<br>
+    something greatest and incredible. It's just only started.
+</p>
+
 {% endblock %}

@@ -1,38 +1,20 @@
 {% extends 'app1/base.html' %}
 
+{% load app1_tags %}
 
-{% block title %}Products{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block header_main_menu  %}
+  {% show_menu_bar header_menu=header_menu title=title %}
+{% endblock %}
 
 
 {% block content %}
-  {% for product in products %}
-  <div class="product">
-    <object class="photo-card-of-product">
-    <img src="{% if product.image != '' and not t %}
-    ../media/{{ product.image }}
-    {% endif %}
 
-    {% if product.image == '' and not t %}
-    ../media/my_face.png
-    {% endif %}
+<section class="cards">
 
-    {% if t %}
-      ../../../../media/{{ product.image }}
-    {% endif %}
+  {% show_chosen_products cat_selected=cat_id %}
 
-    {% if product.image == '' and t %}
-      ../../../../media/my_face.png
-    {% endif %}">
+</section>
 
-
-    </object>
-    <object class="card-of-product">
-    <article class="text-align-center">{{    product.name    }}</article><br>
-    <article>id книги: {{    product.id    }}</article>
-    <article>Автор:   {{    product.author    }}</article>
-    <article class="text-align-center">Категория: <a href="{% url 'products_by_category' product.category_id %}">{{ product.category }}</a></article>
-    <article>Цена: {{    product.price    }}</article>
-    </object>
-  </div>
-  {% endfor %}
-{% endblock %}
+{% endblock content %}

@@ -1,11 +1,13 @@
-from django.shortcuts import render, reverse, redirect, HttpResponse
-from django.template import loader
+from django.shortcuts import render, HttpResponse
 from django.urls import reverse_lazy
-
-from .models import Products, Category
-
 from django.views.generic.edit import CreateView
+
 from .forms import ProductForm
+
+
+
+
+
 
 
 class ProductCreateView(CreateView):
@@ -30,7 +32,6 @@ class ProductCreateView(CreateView):
     '''
     template_name = 'app1/create_new_product.html'
     form_class = ProductForm
-    # model = Products
     success_url = reverse_lazy('create')
 
     def get_context_data(self, **kwargs):
@@ -46,68 +47,86 @@ class ProductCreateView(CreateView):
         :param context : get_context_data(**kwargs)
         :return context
         '''
+
         context = super().get_context_data(**kwargs)
+        title = 'Create'
+        context['header_menu'] = header_menu
+        context['title'] = title
         return context
 
 
-def products(request):
-    print(request)
-    if 'GET' == request.method:
-        products = Products.objects.all()
-        media_url = 'media/app1/'
-        context = {
-            'products' : products,
-            'media_url' : media_url,
-        }
-        return render(request, 'app1/products.html', context)
-
-    if request.POST:
-        # return HttpResponse('<h1><b>Hello World!</b></h1>')
-        types = Products(
-            name=request.POST['name'],
-            author=request.POST['author'],
-            category=request.POST['category'],
-            price=request.POST['price']
-        )
-        types.save()
-    return HttpResponse('<br>'.join(prod.name for prod in Products.objects.all()))
 
 
-def index(request):
-    return render(request, 'app1/index.html')
+
+# def products(request):
+#     print(request)
+#     if 'GET' == request.method:
+#         title = Products
+#         context = {
+#             'title' : title,
+#         }
+#         return render(request, 'app1/products.html', context)
+
+    # if request.POST:
+    #     # return HttpResponse('<h1><b>Hello World!</b></h1>')
+    #     types = Products(
+    #         name=request.POST['name'],
+    #         author=request.POST['author'],
+    #         category=request.POST['category'],
+    #         price=request.POST['price']
+    #     )
+    #     types.save()
+    # return HttpResponse('<br>'.join(prod.name for prod in Products.objects.all()))
+
+
 
 def categories(request):
-    cats = Category.objects.all()
-    t = False
+    title = 'Categories'
     context = {
-        'cats' : cats,
-        't' : t,
-        'logic_photo' : '''{% if product.image != '' and not t %}
-        ../media/{{ product.image }}
-        {% endif %}
-
-        {% if product.image == '' and not t %}
-        ../media/my_face.png
-        {% endif %}
-
-        {% if t %}
-          ../../../../media/{{ product.image }}
-        {% endif %}
-
-        {% if product.image == '' and t %}
-          ../../../../media/my_face.png
-        {% endif %}''',
+        'title' : title,
+        'header_menu': header_menu,
     }
     return render(request, 'app1/categories.html', context)
 
-def products_by_category(request, cat_id):  #
-    products_by_cat = Products.objects.filter(category_id=cat_id)
-    t = True
+
+
+
+header_menu = [
+    {'url_name' : 'index', 'title' : 'Book Shop'},
+    {'url_name' : r'products_by_category', 'title' : 'Products'},
+    {'url_name' : 'categories', 'title' : 'Categories'},
+    {'url_name' : 'create', 'title' : 'Create'},
+]
+
+def index(request):
+    title = 'Book Shop'
     context = {
-        'products' : products_by_cat,
-        't' : t,
+        'title' : title,
+        'header_menu' : header_menu,
+    }
+    return render(request, 'app1/index.html', context)
+
+
+
+def products_by_category(request, cat_id : int):
+    print(cat_id)
+    cat_id = cat_id
+    title = 'Products'
+    context = {
+        'title' : title,
+        'header_menu': header_menu,
+        'cat_id' : cat_id,
     }
     return render(request, 'app1/products.html', context)
+
+
+
+
+
+
+
+
+
 
 def csrf_failure(request, reason=""):
     return HttpResponse('Ti papal suda potomu chto ti dayn idi pomoisya durachok')

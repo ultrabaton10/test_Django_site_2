@@ -1,0 +1,40 @@
+  {% for product in prods %}
+  <div class="product">
+    <object class="photo-card-of-product">
+    <img src="
+    {% if product.image != ''  %}
+        {{ media_url }}{{ product.image }}
+    {% endif %}
+
+    {% if product.image == '' %}
+        {{ media_url }}my_face.png
+    {% endif %}
+
+">
+    </object>
+
+
+    <object class="card-of-product-outside">
+      <object class="card-of-product-inside">
+      {% for a in articles %}
+        {% if a == 'Name:' %}
+          <article>{{a}}{{ product.name }}</article>
+        {% endif %}
+        {% if a == 'Article:' %}
+          <article>{{a}}{{ product.article }}</article>
+        {% endif %}
+        {% if a == 'Category:' %}
+          <article>{{a}}
+            <a href="{% url 'products_by_category' product.id %}">
+              {{ product.category }}
+            </a>
+          </article>
+        {% endif %}
+        {% if a == 'Price:' %}
+          <article>{{a}}{{ product.price }}</article>
+        {% endif %}
+      {% endfor %}
+      </object>
+    </object>
+  </div>
+  {% endfor %}

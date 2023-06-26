@@ -20,7 +20,7 @@ class Products(models.Model):
 
 
 class Category(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True, blank=True)
     image = models.ImageField(upload_to=MEDIA_ROOT, verbose_name='изображение', null=True, blank=True)
     name = models.CharField(max_length=50, blank=False, verbose_name='название категории')
 
