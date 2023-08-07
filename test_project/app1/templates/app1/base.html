@@ -1,22 +1,30 @@
 {% load static %}
 
+{% load app1_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'app1/css/style.css' %}">  <!-- static/app1/css/style.css -->
+    <link rel="icon" href="{% static 'app1/favicons/favicon_package_smail/favicon-16x16.png' %}">
+    <link rel="stylesheet" href="{% static 'app1/css/style.css' %}">
     <title>{% block title %}{% endblock %}</title>
-
 </head>
 <body>
     <header>
         <nav>
-            <div><a href="{% url 'products' %}">Products</a></div>
-            <div><a href="{% url 'categories' %}">Categories</a></div>
+         {% show_menu_bar header_menu=header_menu title=title make_books_text_active=make_books_text_active %}
         </nav>
+        {% if allowance_show_filter_zone %}
+         {% show_filter_zone books_lst=books_lst %}
+        {% endif %}
     </header>
     <main>
         {% block content %}{% endblock %}
     </main>
+    <footer>
+        Footer
+    </footer>
 </body>
+
 </html>

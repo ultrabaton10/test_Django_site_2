@@ -1,29 +1,15 @@
 {% extends 'app1/base.html' %}
 
+{% load app1_tags %}
 
-{% block title %}Products{% endblock %}
-
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-  {% for product in products %}
-  <div class="product">
-    <!-- <img src="static/app1/images/my_face.png"> -->
-    <img src="
-    {% if product.image != '' and not t %}
-    ../media/{{ product.image }}
-    {% endif %}
-    {% if t %}
-      ../../../../media/{{ product.image }}
-    {% endif %}
-    {% if product.image == '' %}
-    ../media/my_face.png
-    {% endif %}
-">
-    <!-- media/app1/img_musik_zxszMN0.png media/app1/{{ product.image }}-->
-    <strong>{{ product.name }}<br>id книги: {{ product.id }}</strong>
-    <p>Автор: {{ product.author }}</p>
-    <p>Категория: {{ product.category }}</p>
-    <p>Цена: {{ product.price }}</p>
-  </div>
-  {% endfor %}
-{% endblock %}
+
+<section class="cards">
+
+  {% show_all_products %}
+
+</section>
+
+{% endblock content %}

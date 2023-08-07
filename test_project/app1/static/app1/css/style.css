@@ -12,17 +12,565 @@
 }
 
 
+
 body {
     margin: 0;
     font-family: 'Ubuntu-regular-medium', sans-serif;
+    height: -webkit-fill-available;
 }
+
+a {
+    text-decoration: none;
+    color: rgb(0, 161, 70);
+    transition: 800ms linear;
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgb(0, 195, 84);
+    transition: 600ms linear;
+}
+
+.selected-link {
+    color: #035c03;
+}
+
 
 header {
-    height: 20vh;
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    height: 220px;
 }
 
-.product img {
-    max-height: 75px;
+header nav {
+    font-size: 20px;
+    display: flex;
+    align-self: center;
+    justify-content: flex-start;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(252, 215, 238, 1) 0%,
+                rgb(255 228 244) 50%, rgba(252, 215, 238, 1) 100%);
+    height: 150px;
+    /*box-shadow: inset 0.1em -0.1em 10.09em rgb(140, 140, 110),
+                     -0.1em 0.1em 0.09em rgb(140, 140, 110);*/
+}
+
+.div-for-index {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.background-image-for-index-page {
+    background-image: url('../images/spanch-bob-reading.jpg');
+    background-repeat: no-repeat;
+
+}
+
+.container-for-search-panel-below-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+}
+
+.second-search-container {
+    height: 100%;
+    display: flex;
+    width: 100%;
+    align-items: inherit;
+    justify-content: center;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.input-plus-button-plus-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    align-items: center;
+
+}
+
+.img-in-form-search {
+    height: 20px;
+    width: 20px;
+    border-collapse: collapse;
+    margin-left: 30px;
+}
+
+.style-input {
+    border-collapse: collapse;
+}
+
+.main-filter-button {
+    height: 70%;
+    background: rgb(216,213,213);
+    background: linear-gradient(130deg,
+                                rgba(216, 213, 213, 1) 20%,
+                                rgba(255,255,255,1) 50%,
+                                rgba(216,213,213,1) 80%);
+    border-radius: 0.5em;
+    border: 2px solid black;
+    transition: 500ms linear;
+}
+
+.main-filter-button:hover {
+    height: 70%;
+    background: rgb(216,213,213);
+    background: linear-gradient(130deg,
+                                rgba(216,213,213,1) 20%,
+                                rgba(255,255,255,1) 32%,
+                                rgba(216,213,213,1) 48%,
+                                rgba(255,255,255,1) 64%,
+                                rgba(216,213,213,1) 80%);
+    border-radius: 0.5em;
+    border: 2px solid black;
+    transition: 500ms linear;
+}
+
+.big-img {
+    height: 75px;
+    width: 75px;
+    border-radius: 50px;
+    border: 3px solid black;
+}
+
+nav div p:first-child {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+nav div a:first-child {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+nav a p {
+    margin: 0;
+}
+
+nav div {
+    display: flex;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: -webkit-fill-available;
+}
+
+.cats_div_container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper_for_cats_bar {
+    display: flex;
+    width: 60%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.style-for-categories-icons {
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product {
+    margin: 40px;
+    background-color: rgb(252, 252, 252);
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-self: center;
+    flex-wrap: wrap;
+    width: 250px;
+    height: 470px;
+    box-shadow: inset 1px 1px 1px gray,
+                inset -1px -1px 1px gray;
+    border-radius: 1em;
+}
+
+.info-about-book-below-name {
+    height: 135px;
+    display: flex;
+    width: 100%;
+    font-size: 10px;
+    border: 1px solid rgba(183, 173, 199, 0.6);;
+    border-radius: 1em;
+    flex-wrap: wrap;
+    align-content: space-between;
+    background: rgba(253, 253, 255, .7);
+}
+
+.photo-card-of-product {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 150px;
+}
+
+.card img {
+    height: 150px;
+    width: 100px;
+    display: block;
+    border-radius: 1em;
+    transition: 500ms linear;
+}
+
+.card img:hover {
+    transform: scale(1.1);
+    transition: 500ms linear;
+}
+
+.card {
+    border-radius: 1em;
+    height: 150px;
+    width: 100px;
+    margin-top: 0px;
+    display: block;
+    overflow: hidden;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.card-of-product-inside {
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    width: 85%;
+}
+
+.card-of-product-outside {
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    height: 55%;
+}
+
+article {
+    margin: 7px 0;
+    display: flex;
+    justify-content: space-between;
+    color: rgb(100, 100, 100);
+    width: 100%;
+}
+
+.section-genre {
+    display: flex;
+    max-width: 50px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: end;
+}
+
+.div-genre {
+    display: flex;
+    max-width: 50px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-bottom: 3px;
+    padding-right: 10px;
+}
+
+.float-left {
+    display: flex;
+    justify-content: flex-start;
+    text-align: start;
+    padding-left: 10px;
+}
+
+.float-right {
+    text-align: end;
+    width: 50%;
+    padding-right: 10px;
+}
+
+article:first-child div {
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgb(30, 30, 30);
+}
+
+article:last-child {
+    padding-bottom: 15px;
 }
 
 
+.self-book-card-grid {
+    position: relative;
+    top: 40px;
+    background: rgba(245, 245, 245, 1);
+    border-radius: 25px;
+    width: 100%;
+    height: 100%;
+}
+
+.photo-card-grid__inner {
+    height: 500px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.photo__inner {
+    justify-content: flex-end;
+    border-radius: 25px;
+    height: 400px;
+    width: 231px;
+    display: flex;
+    overflow: hidden;
+    transition: 500ms linear;
+}
+
+.photo-card-grid__inner img {
+    height: 400px;
+    border-radius: 25px;
+    margin-left: 50px;
+    transition: 500ms linear;
+}
+
+.photo-card-grid__inner img:hover {
+    transform: scale(1.1);
+    transition: 500ms linear;
+}
+
+.photo-grid-and-main-info__wrapper {
+    width: 30%;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.main_info-section__wrapper {
+    display: flex;
+    height: 100%;
+    width: 67%;
+    margin-left: 30px;
+    align-items: center;
+}
+
+.main_info-section__inner {
+    width: 80%;
+    height: 80%;
+    border: 1px solid black;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 1);
+}
+
+.img-and-main_info_wrapper {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    height: 500px;
+}
+
+.book-name__inner {
+    height: 60px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.article-name {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.article-container {
+    margin-right: 60px;
+    margin-left: 60px;
+    font-size: 14px;
+}
+
+.description-grid {
+    margin-left: 70px;
+    width: 860px;
+    height: max-content;
+    border: 1px solid;
+    border-radius: 15px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.description-inner {
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 25px;
+    width: 90%;
+    margin-bottom: 25px;
+}
+
+.previous-price {
+    display: flex;
+    font-size: 10px;
+    color: rgba(130, 130, 130, 1);
+    justify-content: center;
+    margin-top: 7px;
+}
+
+.current-price {
+    color: rgb(0, 0, 0);
+    font-size: 17px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sale_percent__inner {
+    display: flex;
+    color: black;
+    background: rgb(255, 54, 137);
+    /* border: 1px solid black; */
+    border-radius: 4em;
+    width: fit-content;
+    padding: 0px 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.sale-and-current-price-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.previous-price__inner {
+    border-bottom: 1px solid black;
+    height: 6px;
+}
+
+.price-info__container {
+    margin-bottom: 15px;
+}
+
+.add-to-basket {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.add-to-basket-button {
+    height: 25px;
+    background: white;
+    border: 1px solid rgb(28, 255, 81);
+    border-radius: 2px;
+    color: rgb(28, 255, 81);
+    transition: 200ms linear;
+}
+
+.add-to-basket-button:hover {
+    background: rgb(112, 255, 146);
+    border: 1px solid rgb(112, 255, 146);
+    color: white;
+    cursor: pointer;
+    transition: 200ms linear;
+}
+
+.add-to-elected-button {
+    margin-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    width: 25px;
+    background: white;
+    border: 1px solid red;
+    padding: 0;
+    transition: 100ms linear;
+    border-radius: 2px;
+}
+
+.add-to-elected-button::before {
+    content: '';
+    background-image: url(../images/heart-icon-full-red.jpg);
+    width: 18px;
+    height: 18px;
+    background-size: cover;
+    transition: 100ms linear;
+
+}
+
+.add-to-elected-button:hover::before {
+    content: '';
+    background-image: url(../images/like-nxx.png);
+    width: 18px;
+    height: 18px;
+    background-size: cover;
+    cursor: pointer;
+    transition: 100ms linear;
+}
+
+.add-to-elected-button:hover {
+    background: red;
+    transition: 100ms linear;
+}
+
+.main-search-form {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.main-search {
+    height: 40px;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+}
+
+.book-shop-div {
+    margin-left: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer {
+    height: 180px;
+    display: flex;
+    justify-content: space-around;
+    align-self: center;
+    background: rgb(110, 34, 195);
+    background: linear-gradient(0deg,
+                                rgba(110, 34, 195, 1) 10%,
+                                rgba(217, 45, 253, 1) 100%);
+}
