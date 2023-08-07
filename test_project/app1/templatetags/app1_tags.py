@@ -15,3 +15,6 @@ def show_menu_bar(header_menu : list[{str: str}],
     }
 
     return context
+
+def hello():
+    return
