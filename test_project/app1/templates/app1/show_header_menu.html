@@ -1,11 +1,20 @@
 {% load static %}
 
-{% load app1_tags %}
 
 {% for link in header_menu %}
-    {% if link == title %}
-        {% if link == 'Book Shop' %}
-
+    <div class="link-of-header-menu__wrapper">
+        {% if link.title == title %}
+            {% if title == 'Book Shop' %}
+                <p class="selected-link">Book Shop<img src="{% static 'app1/images/лого книжного магазина.jpg' %}" class="big-img"></p>
+            {% elif title != 'Book Shop' %}
+                <p class="selected-link">{{ link.title }}</p>
+            {% endif %}
+        {% elif link.title != title %}
+            {% if link.title == 'Book Shop' %}
+                <a href="{% url 'index' %}">Book Shop<img src="{% static 'app1/images/лого книжного магазина.jpg' %}" class="big-img"></a>
+            {% else %}
+                <a href="{% url link.url_name %}">{{ link.title }}</a>
+            {% endif %}
         {% endif %}
-    {% endif %}
+    </div>
 {% endfor %}

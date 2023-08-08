@@ -9,6 +9,14 @@ header_menu = [
     {'url_name' : r'index', 'title' : 'Book Shop'},
 ]
 
+categories_dct = {
+    'detective': 1,
+    'fantasy': 2,
+    'business-literature': 3,
+    'for-little-ones': 4,
+    'thriller': 5
+}
+
 std_media_url = '../media/'
 
 def set_blank_image_if_book_image_not_exist():
@@ -145,22 +153,23 @@ def index(request):
     books_query_set = []
     make_books_text_active = True
     if request.GET.get('detective') is not None or request.GET.get('fantasy') is not None or request.GET.get('business-literature') is not None or request.GET.get('for-little-ones') is not None or request.GET.get('thriller') is not None:
-        books_query_set.clear()
+        books_query_set.clear(
+        )
         if request.GET.get('detective') is not None:
-            print('request.GET.get("detective") -->', request.GET.get("detective"))
-            books_query_set.append(Book.objects.filter(book_category=request.GET.get("detective")))
+            books_query_set.append(Book.objects.filter(
+                book_category=request.GET.get(categories_dct['detective'])))
         if request.GET.get('fantasy') is not None:
-            books_query_set.append(Book.objects.filter(book_category=request.GET.get("fantasy")))
-            print('request.GET.get("fantasy") -->', request.GET.get("fantasy"))
+            books_query_set.append(Book.objects.filter(
+                book_category=request.GET.get(categories_dct['fantasy'])))
         if request.GET.get('business-literature') is not None:
-            books_query_set.append(Book.objects.filter(book_category=request.GET.get("business-literature")))
-            print('request.GET.get("business-literature") -->', request.GET.get("business-literature"))
+            books_query_set.append(Book.objects.filter(
+                book_category=request.GET.get(categories_dct['business-literature'])))
         if request.GET.get('for-little-ones') is not None:
-            books_query_set.append(Book.objects.filter(book_category=request.GET.get("for-little-ones")))
-            print('request.GET.get("for-little-ones") -->', request.GET.get("for-little-ones"))
+            books_query_set.append(Book.objects.filter(
+                book_category=request.GET.get(categories_dct['for-little-ones'])))
         if request.GET.get('thriller') is not None:
-            books_query_set.append(Book.objects.filter(book_category=request.GET.get("thriller")))
-            print('request.GET.get("thriller") -->', request.GET.get("thriller"))
+            books_query_set.append(Book.objects.filter(
+                book_category=request.GET.get(categories_dct['thriller'])))
         new_books_query_set = db_converter(books_query_set, False)
     elif 'req_key' in request.GET:
         req_value = request.GET.get('req_key')
@@ -197,6 +206,8 @@ def index(request):
         new_books_query_set = return_book_objects_all()
         make_books_text_active = False
 
+
+    print(new_books_query_set)
     context = {
         'title': title,
         'header_menu': header_menu,
@@ -238,6 +249,9 @@ def db_converter(books_query_set, all : bool) -> list[dict]:
             new_books_query_set[count]['description'] = book.description
             book_genre = str(book.book_genre)
             book_genre = book_genre.split(";")
+            for genre in book_genre:
+                if genre == '':
+                    book_genre.remove(genre)
             book_genre.sort(key=len)
             book_genre.reverse()
             new_books_query_set[count]['book_genre'] = book_genre

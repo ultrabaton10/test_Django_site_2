@@ -274,7 +274,7 @@ main {
     height: 55%;
 }
 
-article {
+.ultra-section {
     margin: 7px 0;
     display: flex;
     justify-content: space-between;
@@ -314,14 +314,24 @@ article {
     padding-right: 10px;
 }
 
-article:first-child div {
+.ultra-section:first-child {
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+    color: black;
+}
+
+.ultra-section:first-child article {
     padding-bottom: 15px;
     border-bottom: 2px solid rgb(30, 30, 30);
 }
 
-article:last-child {
+.ultra-section:last-child {
     padding-bottom: 15px;
 }
+
+
+/* Для выбранного товара ниже */
 
 
 .self-book-card-grid {

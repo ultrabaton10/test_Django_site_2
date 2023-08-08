@@ -1,10 +1,10 @@
-from django.template import Library
+from django import template
 
 
-register = Library()
+register = template.Library()
 
 
-register.inclusion_tag('app1/show_menu_header.html')
+@register.inclusion_tag('app1/show_header_menu.html')
 def show_menu_bar(header_menu : list[{str: str}],
                   title : str,
                   make_books_text_active : bool):
@@ -16,5 +16,7 @@ def show_menu_bar(header_menu : list[{str: str}],
 
     return context
 
-def hello():
-    return
+
+
+
+
