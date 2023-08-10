@@ -6,7 +6,7 @@
     {% for book in books_lst %}
         <section class="product">
             <object class="photo-card-of-product">
-                <a href="#">
+                <a href="{% url 'chosen-book' book.book_slug book.book_id %}">
                     <div class="card">
                         <img src="{{ media_url }}{{ book.book_img }}">
                     </div>
@@ -17,7 +17,7 @@
                     <section class="ultra-section">
                         <article class="float-left">{{ book.current_price }} ₽</article>
                     </section>
-                    <section class="ultra-section">
+                    <section class="book_name">
                         <article>{{ book.book_name }}</article>
                     </section>
                     <section class="ultra-section">
@@ -38,11 +38,11 @@
                             {% endfor %}
                         </article>
                     </section>
-                    <section class="ultra-section">
-                        <article class="float-left">Рейтинг</article>
-                        <article class="float-right">4.3</article>
-                    </section>
                 </object>
+                <section class="rating-section">
+                    <article class="float-left">Рейтинг</article>
+                    <article class="float-right">4.3</article>
+                </section>
             </object>
         </section>
     {% endfor %}

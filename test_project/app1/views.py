@@ -114,7 +114,7 @@ def set_blank_image_if_book_image_not_exist():
 def chosen_book(request, book_slug, book_id):
     '''
     Функция, ведущая на страницу product.html,
-    на которой отображается карточка с продуктом,
+    на которой отображается карточка с выбранным продуктом,
     '''
     print("=-" * 10, request.GET, ' chosen_book -->  page request', "-=" * 10)
     title = 'Self Book Card'
@@ -125,8 +125,9 @@ def chosen_book(request, book_slug, book_id):
         'book_info': book_info,
         'allowance_show_filter_zone': False,
         'make_books_text_active': True,
+        'media_url': std_media_url
     }
-    return render(request, 'app1/product.html', context)
+    return render(request, 'app1/book.html', context)
 
 
 def return_book_objects_all():

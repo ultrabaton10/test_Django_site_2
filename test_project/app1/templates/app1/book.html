@@ -1,0 +1,23 @@
+{% extends 'app1/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Self Book Card
+{% endblock title %}
+
+
+{% block content %}
+  {% for i in book_info %}
+    <section class="self-book-card-grid">
+      <article class="photo-card-grid__inner">
+        <div class="photo__inner">
+          <img src="../../{{ media_url }}{{ i.book_img }}">
+        </div>
+      </article>
+      <article class="main_info-article__inner">
+
+      </article>
+    </section>
+  {% endfor %}
+{% endblock content %}
