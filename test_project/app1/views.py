@@ -154,23 +154,20 @@ def index(request):
     books_query_set = []
     make_books_text_active = True
     if request.GET.get('detective') is not None or request.GET.get('fantasy') is not None or request.GET.get('business-literature') is not None or request.GET.get('for-little-ones') is not None or request.GET.get('thriller') is not None:
-        books_query_set.clear(
-        )
+        books_query_set.clear()
         if request.GET.get('detective') is not None:
-            books_query_set.append(Book.objects.filter(
-                book_category=request.GET.get(categories_dct['detective'])))
+            print('TI POPAL SUDA'*10)
+            books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('detective')))
+            print(books_query_set, 'boba', request.GET.get('detective'))
         if request.GET.get('fantasy') is not None:
-            books_query_set.append(Book.objects.filter(
-                book_category=request.GET.get(categories_dct['fantasy'])))
+            books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('fantasy')))
         if request.GET.get('business-literature') is not None:
-            books_query_set.append(Book.objects.filter(
-                book_category=request.GET.get(categories_dct['business-literature'])))
+            books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('business-literature')))
         if request.GET.get('for-little-ones') is not None:
-            books_query_set.append(Book.objects.filter(
-                book_category=request.GET.get(categories_dct['for-little-ones'])))
+            books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('for-little-ones')))
         if request.GET.get('thriller') is not None:
-            books_query_set.append(Book.objects.filter(
-                book_category=request.GET.get(categories_dct['thriller'])))
+            books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('thriller')))
+        print(books_query_set, 'ABOBA'*4)
         new_books_query_set = db_converter(books_query_set, False)
     elif 'req_key' in request.GET:
         req_value = request.GET.get('req_key')
@@ -188,8 +185,9 @@ def index(request):
                     'book_info': book_info,
                     'allowance_show_filter_zone': False,
                     'make_books_text_active': True,
+                    'media_url': std_media_url
                 }
-                return render(request, 'app1/product.html', context)
+                return render(request, 'app1/book.html', context)
             except Exception:
                 print('Bad trying')
                 new_books_query_set = return_book_objects_all()

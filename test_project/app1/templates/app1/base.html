@@ -14,11 +14,15 @@
     <header>
         <nav>
          {% show_menu_bar header_menu=header_menu title=title make_books_text_active=make_books_text_active %}
+         <section class="main-search">
+            <form enctype="application/x-www-form-urlencoded" method="get">
+                <input name="req_key" type="search" placeholder="Искать" class="main-search-input">
+            </form>
+        </section>
         </nav>
         {% if allowance_show_filter_zone %}
-            {# show_filter_zone #}
+          {% show_filter_zone %}
         {% endif %}
-
     </header>
     <main>
         {% block content %}{% endblock %}
@@ -27,5 +31,4 @@
         Footer
     </footer>
 </body>
-
 </html>

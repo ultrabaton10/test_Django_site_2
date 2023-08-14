@@ -15,8 +15,100 @@ Self Book Card
           <img src="../../{{ media_url }}{{ i.book_img }}">
         </div>
       </article>
-      <article class="main_info-article__inner">
-
+      <article class="main_info-article__wrapper">
+        <article class="main_info-article__inner">
+          <div class="price-plus-rating">
+          <article class="price-info">
+            <div class="price-zone">
+              {% if i.previous_price is not None %}
+                <div class="price-grid-with-percent">
+                  <object class="percent">
+                    -{{ i.sale_percent }}%
+                  </object>
+                  <div class="current-and-preceding-price">
+                    <div class="current-price">
+                      {{ i.current_price }} ₽
+                    </div>
+                    <div class="preceding-price">{{ i.previous_price }} ₽</div>
+                  </div>
+                </div>
+              {% else %}
+                <div class="price-grid-with-percent">
+                  {{ i.current_price }} ₽
+                </div>
+              {% endif %}
+            </div>
+            <div class="add-to-basket-and-like-buttons">
+              <form method="post" enctype="application/x-www-form-urlencoded" class="add-to-basket-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn-add-to-basket"><span>В корзину</span></button>
+              </form>
+              <form enctype="application/x-www-form-urlencoded" method="post" class="add-to-elected-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn-add-to-liked">
+                  <div></div>
+                  <span class="for-heart-icon-span"></span>
+                </button>
+              </form>
+            </div>
+          </article>
+            <article class="rating-info">
+              <div class="rating-text">Рейтинг</div>
+              <div class="rating-img-card">
+                <div class="top-img-star-wrapper">
+                  <span class="star-img"></span>
+                  <span class="star-img"></span>
+                  <span class="star-img"></span>
+                </div>
+                <div class="bottom-img-star-wrapper">
+                  <span class="star-img"></span>
+                  <span class="star-img"></span>
+                </div>
+              </div>
+            </article>
+          </div>
+          <section class="common-info-about-product">
+            <div class="book_name_div_inner">
+              {{ i.book_name }}
+            </div>
+            <section class="info-below-name">
+              <div class="book-info-inner">
+               <div>Автор</div>
+                <div class="dotted"></div>
+                <div>Зумбар</div>
+              </div>
+              <div class="book-info-inner">
+                <div>Категория</div>
+                <div class="dotted"></div>
+                <div>{{ i.book_category }}</div>
+              </div>
+              <div class="book-info-inner">
+                <section class="genre-section">
+                <div>Жанр(ы)</div>
+                <div class="genre-dotted"></div>
+                  <div class="common-div-container-for-genre">
+                    {% for genre in i.book_genre %}
+                      <div class="div-genre">
+                        {{ genre }}
+                      </div>
+                    {% endfor %}
+                  </div>
+                </section>
+              </div>
+              <div class="book-date-create">
+                <div>Дата создания</div>
+                <div class="dotted"></div>
+                <div class="create">{{ i.date_create }}</div>
+              </div>
+            </section>
+          </section>
+        </article>
+      </article>
+      <article class="description-grid__inner">
+        <div class="description-task"><span>Содержание</span></div>
+        <div class="description-containment">{{ i.description }}</div>
       </article>
     </section>
   {% endfor %}

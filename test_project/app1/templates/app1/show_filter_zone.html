@@ -1,9 +1,16 @@
-{% extends 'app1/base.html' %}
 
 {% load static %}
 
-<section>
-
-
-
+<section class="filter-zone">
+    <form method="get" enctype="application/x-www-form-urlencoded">
+        {% for key, value in filters_dct.items %}
+            <div class="container-for-filter-checkbox">
+                <span class="">{{ key }}</span>
+                <span class="input-filter-inside">
+                    <input name="{{ key }}" value="{{ value }}" type="checkbox">
+                </span>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn-filter">Фильтровать</button>
+    </form>
 </section>
