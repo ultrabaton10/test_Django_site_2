@@ -4,12 +4,12 @@ from test_project.settings import MEDIA_ROOT
 
 class Book(models.Model):
     book_slug = models.SlugField(max_length=65, unique=True, db_index=True, verbose_name="Slug-URL for book")
+    book_name = models.CharField(max_length=50, verbose_name='Название книги:')
     book_img = models.ImageField(
         upload_to=MEDIA_ROOT + '/' + 'dir_for_BOOKS_IMAGES/',
         verbose_name='Изображение:', max_length=255)
     current_price = models.IntegerField(verbose_name='Цена текущая(со скидкой):')
     previous_price = models.IntegerField(blank=True, null=True, verbose_name='Цена без скидки:')
-    book_name = models.CharField(max_length=50, verbose_name='Название книги:')
     # book_author = models.ForeignKey('Author', on_delete=models.CASCADE, verbose_name='Автор книги')
     book_category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name='Категория книги:')
     # book_genre = models.ForeignKey('Genre', on_delete=models.CASCADE, verbose_name='Жанр книги')

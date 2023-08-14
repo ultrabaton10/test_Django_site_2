@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.template import TemplateDoesNotExist
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from .models import *
@@ -171,12 +172,11 @@ def index(request):
         new_books_query_set = db_converter(books_query_set, False)
     elif 'req_key' in request.GET:
         req_value = request.GET.get('req_key')
-        print('Hello'*100)
         if req_value:
-            print('OGOGGOGO'*5)
+            print(f'\tБыл запрос в поисковой строке: {req_value}\n\n\n')
             try:
                 response = Book.objects.get(book_name=req_value)
-                print("Good trying")
+                print("\tЗапрос в поисковой строке был найден в базе данных среди названий товаров\n\n\n")
                 title = 'Self Book Card'
                 book_info = db_converter(books_query_set=[[Book.objects.get(pk=response.pk)]], all=False)
                 context = {
@@ -189,7 +189,7 @@ def index(request):
                 }
                 return render(request, 'app1/book.html', context)
             except Exception:
-                print('Bad trying')
+                print("\tЗапрос в поисковой строке не был найден среди названий товаров\n\n\n")
                 new_books_query_set = return_book_objects_all()
                 make_books_text_active = False
                 context = {
@@ -200,7 +200,7 @@ def index(request):
                     'make_books_text_active': make_books_text_active,
                     'allowance_show_filter_zone': True,
                 }
-                return render(request, 'app1/books_page.html', context)
+                return render(request, 'app1/index.html', context)
     else:
         new_books_query_set = return_book_objects_all()
         make_books_text_active = False
