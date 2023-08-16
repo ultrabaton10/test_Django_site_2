@@ -11,10 +11,14 @@
             {% endif %}
         {% elif link.title != title %}
             {% if link.title == 'Book Shop' %}
-                <a href="{% url 'index' %}">Book Shop<img src="{% static 'app1/images/лого книжного магазина.jpg' %}" class="big-img"></a>
+                <a href="{% url link.url_name %}">Book Shop<img src="{% static 'app1/images/лого книжного магазина.jpg' %}" class="big-img"></a>
             {% else %}
                 <a href="{% url link.url_name %}">{{ link.title }}</a>
             {% endif %}
         {% endif %}
+    </div>
+    <div class="log-in-or-log-out__inner">
+        <div class="log-in"><a href="{% url 'log_in' %}">Войти</a></div>
+        <div class="log-out"><a href="{% url 'log_out' %}">Зарегистрироваться</a></div>
     </div>
 {% endfor %}

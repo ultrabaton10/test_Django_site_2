@@ -1,24 +1,13 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, HttpResponse
 from django.template import TemplateDoesNotExist
 from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from .models import *
+from .utils import *
 
-
-
-header_menu = [
-    {'url_name' : r'index', 'title' : 'Book Shop'},
-]
-
-categories_dct = {
-    'detective': 1,
-    'fantasy': 2,
-    'business-literature': 3,
-    'for-little-ones': 4,
-    'thriller': 5
-}
-
-std_media_url = '../media/'
 
 def set_blank_image_if_book_image_not_exist():
     for book in Book.objects.all():
@@ -138,85 +127,82 @@ def return_book_objects_all():
     print('def return_book_objects_all():\n\tres --> ', new_books_query_set)
     return new_books_query_set
 
-def index(request):
-    '''
-    Страница с отфильтрованными книгами.
-    Книги фильтруются двумя путями:
-    Первый - это когда пользователь перешел на страницу,
-    предварительно не применив фильтры, в этом случае будут выведены все продукты.
-    Второй - это когда пользователь предварительно
-    применил фильтры по категориям продуктов, и в результате ему
-    показывается отфильтрованная страница с выбранными продуктами.
-    '''
-    global new_books_query_set
-    title = 'Books'
-    # set_blank_image_if_book_image_not_exist()
-    print("~-" * 10, request.GET, 'request --> index page', "-~" * 10)
-    books_query_set = []
-    make_books_text_active = True
-    if request.GET.get('detective') is not None or request.GET.get('fantasy') is not None or request.GET.get('business-literature') is not None or request.GET.get('for-little-ones') is not None or request.GET.get('thriller') is not None:
-        books_query_set.clear()
-        if request.GET.get('detective') is not None:
-            print('TI POPAL SUDA'*10)
-            books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('detective')))
-            print(books_query_set, 'boba', request.GET.get('detective'))
-        if request.GET.get('fantasy') is not None:
-            books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('fantasy')))
-        if request.GET.get('business-literature') is not None:
-            books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('business-literature')))
-        if request.GET.get('for-little-ones') is not None:
-            books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('for-little-ones')))
-        if request.GET.get('thriller') is not None:
-            books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('thriller')))
-        print(books_query_set, 'ABOBA'*4)
-        new_books_query_set = db_converter(books_query_set, False)
-    elif 'req_key' in request.GET:
-        req_value = request.GET.get('req_key')
-        if req_value:
-            print(f'\tБыл запрос в поисковой строке: {req_value}\n\n\n')
-            try:
-                response = Book.objects.get(book_name=req_value)
-                print("\tЗапрос в поисковой строке был найден в базе данных среди названий товаров\n\n\n")
-                title = 'Self Book Card'
-                book_info = db_converter(books_query_set=[[Book.objects.get(pk=response.pk)]], all=False)
-                context = {
-                    'title': title,
-                    'header_menu': header_menu,
-                    'book_info': book_info,
-                    'allowance_show_filter_zone': False,
-                    'make_books_text_active': True,
-                    'media_url': std_media_url
+
+class App1Home(View):
+    def get(self, request):
+        '''
+        Страница с отфильтрованными книгами.
+        Книги фильтруются двумя путями:
+        Первый - это когда пользователь перешел на страницу,
+        предварительно не применив фильтры, в этом случае будут выведены все продукты.
+        Второй - это когда пользователь предварительно
+        применил фильтры по категориям продуктов, и в результате ему
+        показывается отфильтрованная страница с выбранными продуктами.
+        '''
+        global new_books_query_set
+        title = 'Book Shop'
+        # set_blank_image_if_book_image_not_exist()
+        print("~-" * 10, request.GET, 'request --> index page', "-~" * 10)
+        books_query_set = []
+        make_books_text_active = True
+        if request.GET.get('detective') is not None or request.GET.get('fantasy') is not None or request.GET.get('business-literature') is not None or request.GET.get('for-little-ones') is not None or request.GET.get('thriller') is not None:
+            books_query_set.clear()
+            if request.GET.get('detective') is not None:
+                books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('detective')))
+            if request.GET.get('fantasy') is not None:
+                books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('fantasy')))
+            if request.GET.get('business-literature') is not None:
+                books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('business-literature')))
+            if request.GET.get('for-little-ones') is not None:
+                books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('for-little-ones')))
+            if request.GET.get('thriller') is not None:
+                books_query_set.append(Book.objects.filter(book_category_id=request.GET.get('thriller')))
+        elif 'req_key' in request.GET:
+            req_value = request.GET.get('req_key')
+            if req_value:
+                print(f'\tБыл запрос в поисковой строке: {req_value}\n\n\n')
+                try:
+                    response = Book.objects.get(book_name=req_value)
+                    print("\tЗапрос в поисковой строке был найден в базе данных среди названий товаров\n\n\n")
+                    title = 'Self Book Card'
+                    book_info = db_converter(books_query_set=[[Book.objects.get(pk=response.pk)]], all=False)
+                    context = {
+                        'title': title,
+                        'header_menu': header_menu,
+                        'book_info': book_info,
+                        'allowance_show_filter_zone': False,
+                        'make_books_text_active': True,
+                        'media_url': std_media_url
+                        }
+                    return render(request, 'app1/book.html', context)
+                except Exception:
+                    print("\tЗапрос в поисковой строке не был найден среди названий товаров\n\n\n")
+                    new_books_query_set = return_book_objects_all()
+                    make_books_text_active = False
+                    context = {
+                        'title': title,
+                        'header_menu': header_menu,
+                        'books_lst': new_books_query_set,
+                        'media_url': std_media_url,
+                        'make_books_text_active': make_books_text_active,
+                        'allowance_show_filter_zone': True,
+                        }
+                    return render(request, 'app1/index.html', context)
+        else:
+            new_books_query_set = return_book_objects_all()
+            make_books_text_active = False
+
+            print(new_books_query_set)
+            context = {
+                'title': title,
+                'header_menu': header_menu,
+                'books_lst': new_books_query_set,
+                'media_url': std_media_url,
+                'make_books_text_active': make_books_text_active,
+                'allowance_show_filter_zone': True,
                 }
-                return render(request, 'app1/book.html', context)
-            except Exception:
-                print("\tЗапрос в поисковой строке не был найден среди названий товаров\n\n\n")
-                new_books_query_set = return_book_objects_all()
-                make_books_text_active = False
-                context = {
-                    'title': title,
-                    'header_menu': header_menu,
-                    'books_lst': new_books_query_set,
-                    'media_url': std_media_url,
-                    'make_books_text_active': make_books_text_active,
-                    'allowance_show_filter_zone': True,
-                }
-                return render(request, 'app1/index.html', context)
-    else:
-        new_books_query_set = return_book_objects_all()
-        make_books_text_active = False
 
-
-    print(new_books_query_set)
-    context = {
-        'title': title,
-        'header_menu': header_menu,
-        'books_lst': new_books_query_set,
-        'media_url': std_media_url,
-        'make_books_text_active': make_books_text_active,
-        'allowance_show_filter_zone': True,
-    }
-
-    return render(request, 'app1/index.html', context)
+            return render(request, 'app1/index.html', context)
 
 
 def calc_percent(current_price, previous_price):
@@ -283,6 +269,24 @@ def db_converter(books_query_set, all : bool) -> list[dict]:
                 count += 1
 
     return new_books_query_set
+
+
+def log_in(request):
+    return HttpResponse('Hello')
+
+def log_out(request):
+    return HttpResponse('Hello')
+
+class RegisterUser(CreateView):
+    form_class = UserCreationForm
+    template_name = 'app1/log_out.html'
+    success_url = reverse_lazy('log_in')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return dict(list(context.items())) + list({"title": "Регистрация"})
+
+
 
 
 
